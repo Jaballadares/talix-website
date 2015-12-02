@@ -70,7 +70,7 @@ Template Name: Product For Provider Template
             <p class="provider-paragraph-1"><?php the_sub_field('value_prop_4_blurb'); ?></p>
           <?php endif; ?>
 <?php endwhile; endif; ?>
-            <a class="w-button button cis-button-1 schedule-button-4 schedule-button" href="#">Schedule a Demo!</a>
+            <a class="w-button button cis-button-1 schedule-button-4 schedule-button" href="/scheduler">Schedule a Demo!</a>
           </div>
         </div>
         <div class="w-col w-col-3 side-column mobile-hide">
