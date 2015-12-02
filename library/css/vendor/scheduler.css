@@ -1,0 +1,2027 @@
+@charset 'UTF-8';
+/**** **** **** **** ****
+BREAKPOINTS -
+USAGE: @include breakpoint(small) {}
+**** **** **** **** ****/
+/**** **** **** **** ****
+CLEARFIX -
+USAGE: @include clearfix();
+**** **** **** **** ****/
+/**** **** **** **** ****
+PLACEHOLDER -
+USAGE: @include placeholder(#333);
+**** **** **** **** ****/
+/**** **** **** **** ****
+FLEXBOX!
+USAGE: @include flexbox();
+**** **** **** **** ****/
+/**** **** **** **** ****
+FLEX
+USAGE: @include flex(1 1 200px);
+**** **** **** **** ****/
+/**** **** **** **** ****
+ORDER
+USAGE: @include order(2);
+**** **** **** **** ****/
+/* ==========================================================================
+   $BASE-PICKER
+   ========================================================================== */
+/**
+ * Note: the root picker element should *NOT* be styled more than whatâ€™s here.
+ */
+.picker
+{
+    font-size: 16px;
+    line-height: 1.2;
+
+    position: absolute;
+    z-index: 10000;
+
+    -webkit-user-select: none;
+       -moz-user-select: none;
+        -ms-user-select: none;
+            user-select: none;
+    text-align: left;
+
+    color: #000;
+}
+
+/**
+ * The picker input element.
+ */
+.picker__input
+{
+    cursor: default;
+}
+
+/**
+ * When the picker is opened, the input element is â€œactivatedâ€.
+ */
+.picker__input.picker__input--active
+{
+    border-color: #0089ec;
+}
+
+/**
+ * The holder is the only â€œscrollableâ€ top-level container element.
+ */
+.picker__holder
+{
+    overflow-y: auto;
+
+    width: 100%;
+
+    -webkit-overflow-scrolling: touch;
+}
+
+/*!
+ * Default mobile-first, responsive styling for pickadate.js
+ * Demo: http://amsul.github.io/pickadate.js
+ */
+/**
+ * Note: the root picker element should *NOT* be styled more than whatâ€™s here.
+ */
+/**
+ * Make the holder and frame fullscreen.
+ */
+.picker__holder,
+.picker__frame
+{
+    top: 0;
+    right: 0;
+    bottom: 0;
+    left: 0;
+
+    -webkit-transform: translateY(100%);
+        -ms-transform: translateY(100%);
+            transform: translateY(100%);
+}
+
+/**
+ * The holder should overlay the entire screen.
+ */
+.picker__holder
+{
+    position: fixed;
+
+    transition: background .15s ease-out, -webkit-transform 0s .15s;
+    transition: background .15s ease-out, transform 0s .15s;
+
+    -webkit-backface-visibility: hidden;
+}
+
+/**
+ * The frame that bounds the box contents of the picker.
+ */
+.picker__frame
+{
+    position: absolute;
+
+    width: 100%;
+    min-width: 256px;
+    max-width: 666px;
+    margin: 0 auto;
+
+    transition: all .15s ease-out;
+
+         opacity: 0;
+
+    -ms-filter: 'progid:DXImageTransform.Microsoft.Alpha(Opacity=0)';
+        filter: alpha(opacity=0);
+    -moz-opacity: 0;
+}
+
+@media (min-height: 33.875em)
+{
+    .picker__frame
+    {
+        top: auto;
+        bottom: -100%;
+
+        overflow: visible;
+
+        max-height: 80%;
+    }
+}
+
+@media (min-height: 40.125em)
+{
+    .picker__frame
+    {
+        margin-bottom: 7.5%;
+    }
+}
+
+/**
+ * The wrapper sets the stage to vertically align the box contents.
+ */
+.picker__wrap
+{
+    display: table;
+
+    width: 100%;
+    height: 100%;
+}
+
+@media (min-height: 33.875em)
+{
+    .picker__wrap
+    {
+        display: block;
+    }
+}
+
+/**
+ * The box contains all the picker contents.
+ */
+.picker__box
+{
+    display: table-cell;
+
+    vertical-align: middle;
+
+    background: #fff;
+}
+
+@media (min-height: 26.5em)
+{
+    .picker__box
+    {
+        font-size: 1.25em;
+    }
+}
+
+@media (min-height: 33.875em)
+{
+    .picker__box
+    {
+        font-size: 1.33em;
+
+        display: block;
+
+        border: 1px solid #777;
+        border-top-color: #898989;
+        border-bottom-width: 0;
+        border-radius: 5px 5px 0 0;
+        box-shadow: 0 12px 36px 16px rgba(0, 0, 0, .24);
+    }
+}
+
+@media (min-height: 40.125em)
+{
+    .picker__box
+    {
+        font-size: 1.5em;
+
+        border-bottom-width: 1px;
+        border-radius: 5px;
+    }
+}
+
+/**
+ * When the picker opens...
+ */
+.picker--opened .picker__holder
+{
+    zoom: 1;
+
+    transition: background .15s ease-out;
+    -webkit-transform: translateY(0);
+        -ms-transform: translateY(0);
+            transform: translateY(0);
+
+    background: transparent;
+    background: rgba(0, 0, 0, .32);
+
+    -ms-filter: 'progid:DXImageTransform.Microsoft.gradient(startColorstr=#1E000000,endColorstr=#1E000000)';
+}
+
+.picker--opened .picker__frame
+{
+    -webkit-transform: translateY(0);
+        -ms-transform: translateY(0);
+            transform: translateY(0);
+
+         opacity: 1;
+
+    -ms-filter: 'progid:DXImageTransform.Microsoft.Alpha(Opacity=100)';
+        filter: alpha(opacity=100);
+    -moz-opacity: 1;
+}
+
+@media (min-height: 33.875em)
+{
+    .picker--opened .picker__frame
+    {
+        top: auto;
+        bottom: 0;
+    }
+}
+
+/* ==========================================================================
+   $BASE-DATE-PICKER
+   ========================================================================== */
+/**
+ * The picker box.
+ */
+.picker__box
+{
+    padding: 0 1em;
+}
+
+/**
+ * The header containing the month and year stuff.
+ */
+.picker__header
+{
+    position: relative;
+
+    margin-top: .75em;
+
+    text-align: center;
+}
+
+/**
+ * The month and year labels.
+ */
+.picker__month,
+.picker__year
+{
+    font-weight: 500;
+
+    display: inline-block;
+
+    margin-right: .25em;
+    margin-left: .25em;
+}
+
+.picker__year
+{
+    font-size: .8em;
+    font-style: italic;
+
+    color: #999;
+}
+
+/**
+ * The month and year selectors.
+ */
+.picker__select--month,
+.picker__select--year
+{
+    height: 2em;
+    margin-right: .25em;
+    margin-left: .25em;
+    padding: .5em;
+
+    border: 1px solid #b7b7b7;
+}
+
+@media (min-width: 24.5em)
+{
+    .picker__select--month,
+    .picker__select--year
+    {
+        margin-top: -.5em;
+    }
+}
+
+.picker__select--month
+{
+    width: 35%;
+}
+
+.picker__select--year
+{
+    width: 22.5%;
+}
+
+.picker__select--month:focus,
+.picker__select--year:focus
+{
+    border-color: #0089ec;
+}
+
+/**
+ * The month navigation buttons.
+ */
+.picker__nav--prev,
+.picker__nav--next
+{
+    position: absolute;
+    top: -.25em;
+
+    box-sizing: content-box;
+    width: 1em;
+    height: 1em;
+    padding: .5em 1.25em;
+}
+
+@media (min-width: 24.5em)
+{
+    .picker__nav--prev,
+    .picker__nav--next
+    {
+        top: -.33em;
+    }
+}
+
+.picker__nav--prev
+{
+    left: -1em;
+
+    padding-right: 1.25em;
+}
+
+@media (min-width: 24.5em)
+{
+    .picker__nav--prev
+    {
+        padding-right: 1.5em;
+    }
+}
+
+.picker__nav--next
+{
+    right: -1em;
+
+    padding-left: 1.25em;
+}
+
+@media (min-width: 24.5em)
+{
+    .picker__nav--next
+    {
+        padding-left: 1.5em;
+    }
+}
+
+.picker__nav--prev:before,
+.picker__nav--next:before
+{
+    display: block;
+
+    width: 0;
+    height: 0;
+    margin: 0 auto;
+
+    content: ' ';
+
+    border-top: .5em solid transparent;
+    border-right: .75em solid #000;
+    border-bottom: .5em solid transparent;
+}
+
+.picker__nav--next:before
+{
+    border-right: 0;
+    border-left: .75em solid #000;
+}
+
+.picker__nav--prev:hover,
+.picker__nav--next:hover
+{
+    cursor: pointer;
+
+    color: #000;
+    background: #b1dcfb;
+}
+
+.picker__nav--disabled,
+.picker__nav--disabled:hover,
+.picker__nav--disabled:before,
+.picker__nav--disabled:before:hover
+{
+    cursor: default;
+
+    border-right-color: #f5f5f5;
+    border-left-color: #f5f5f5;
+    background: none;
+}
+
+/**
+ * The calendar table of dates
+ */
+.picker__table
+{
+    font-size: inherit;
+
+    width: 100%;
+    margin-top: .75em;
+    margin-bottom: .5em;
+
+    table-layout: fixed;
+    border-spacing: 0;
+    border-collapse: collapse;
+
+    text-align: center;
+}
+
+@media (min-height: 33.875em)
+{
+    .picker__table
+    {
+        margin-bottom: .75em;
+    }
+}
+
+.picker__table td
+{
+    margin: 0;
+    padding: 0;
+}
+
+/**
+ * The weekday labels
+ */
+.picker__weekday
+{
+    font-size: .75em;
+    font-weight: 500;
+
+    width: 14.285714286%;
+    padding-bottom: .25em;
+
+    color: #999;
+    /* Increase the spacing a tad */
+}
+
+@media (min-height: 33.875em)
+{
+    .picker__weekday
+    {
+        padding-bottom: .5em;
+    }
+}
+
+/**
+ * The days on the calendar
+ */
+.picker__day
+{
+    font-weight: 200;
+
+    padding: .3125em 0;
+
+    border: 1px solid transparent;
+}
+
+.picker__day--today
+{
+    position: relative;
+}
+
+.picker__day--today:before
+{
+    position: absolute;
+    top: 2px;
+    right: 2px;
+
+    width: 0;
+    height: 0;
+
+    content: ' ';
+
+    border-top: .5em solid #0059bc;
+    border-left: .5em solid transparent;
+}
+
+.picker__day--disabled:before
+{
+    border-top-color: #aaa;
+}
+
+.picker__day--outfocus
+{
+    color: #ddd;
+}
+
+.picker__day--infocus:hover,
+.picker__day--outfocus:hover
+{
+    cursor: pointer;
+
+    color: #000;
+    background: #b1dcfb;
+}
+
+.picker__day--highlighted
+{
+    border-color: #0089ec;
+}
+
+.picker__day--highlighted:hover,
+.picker--focused .picker__day--highlighted
+{
+    cursor: pointer;
+
+    color: #000;
+    background: #b1dcfb;
+}
+
+.picker__day--selected,
+.picker__day--selected:hover,
+.picker--focused .picker__day--selected
+{
+    color: #fff;
+    background: #0089ec;
+}
+
+.picker__day--disabled,
+.picker__day--disabled:hover,
+.picker--focused .picker__day--disabled
+{
+    cursor: default;
+
+    color: #ddd;
+    border-color: #f5f5f5;
+    background: #f5f5f5;
+}
+
+.picker__day--highlighted.picker__day--disabled,
+.picker__day--highlighted.picker__day--disabled:hover
+{
+    background: #bbb;
+}
+
+/**
+ * The footer containing the "today", "clear", and "close" buttons.
+ */
+.picker__footer
+{
+    text-align: center;
+}
+
+.picker__button--today,
+.picker__button--clear,
+.picker__button--close
+{
+    font-size: .8em;
+    font-weight: bold;
+
+    display: inline-block;
+
+    width: 33%;
+    padding: .66em 0;
+
+    vertical-align: bottom;
+
+    border: 1px solid #fff;
+    background: #fff;
+}
+
+.picker__button--today:hover,
+.picker__button--clear:hover,
+.picker__button--close:hover
+{
+    cursor: pointer;
+
+    color: #000;
+    border-bottom-color: #b1dcfb;
+    background: #b1dcfb;
+}
+
+.picker__button--today:focus,
+.picker__button--clear:focus,
+.picker__button--close:focus
+{
+    border-color: #0089ec;
+    outline: none;
+    background: #b1dcfb;
+}
+
+.picker__button--today:before,
+.picker__button--clear:before,
+.picker__button--close:before
+{
+    position: relative;
+
+    display: inline-block;
+
+    height: 0;
+}
+
+.picker__button--today:before,
+.picker__button--clear:before
+{
+    margin-right: .45em;
+
+    content: ' ';
+}
+
+.picker__button--today:before
+{
+    top: -.05em;
+
+    width: 0;
+
+    border-top: .66em solid #0059bc;
+    border-left: .66em solid transparent;
+}
+
+.picker__button--clear:before
+{
+    top: -.25em;
+
+    width: .66em;
+
+    border-top: 3px solid #e20;
+}
+
+.picker__button--close:before
+{
+    font-size: 1.1em;
+
+    top: -.1em;
+
+    margin-right: .35em;
+
+    content: '\D7';
+    vertical-align: top;
+
+    color: #777;
+}
+
+.picker__button--today[disabled],
+.picker__button--today[disabled]:hover
+{
+    cursor: default;
+
+    color: #ddd;
+    border-color: #f5f5f5;
+    background: #f5f5f5;
+}
+
+.picker__button--today[disabled]:before
+{
+    border-top-color: #aaa;
+}
+
+/* ==========================================================================
+   $DEFAULT-DATE-PICKER
+   ========================================================================== */
+/* ==========================================================================
+   $BASE-TIME-PICKER
+   ========================================================================== */
+/**
+ * The list of times.
+ */
+.picker__list
+{
+    margin: 0;
+    padding: .75em 0 4.2em;
+
+    list-style: none;
+}
+
+/**
+ * The times on the clock.
+ */
+.picker__list-item
+{
+    position: relative;
+
+    margin-bottom: -1px;
+    padding: .75em 1.25em;
+
+    border-top: 1px solid #ddd;
+    border-bottom: 1px solid #ddd;
+    background: #fff;
+}
+
+@media (min-height: 46.75em)
+{
+    .picker__list-item
+    {
+        padding: .5em 1em;
+    }
+}
+
+/* Hovered time */
+.picker__list-item:hover
+{
+    z-index: 10;
+
+    cursor: pointer;
+
+    color: #000;
+    border-color: #0089ec;
+    background: #b1dcfb;
+}
+
+/* Highlighted and hovered/focused time */
+.picker__list-item--highlighted
+{
+    z-index: 10;
+
+    border-color: #0089ec;
+}
+
+.picker__list-item--highlighted:hover,
+.picker--focused .picker__list-item--highlighted
+{
+    cursor: pointer;
+
+    color: #000;
+    background: #b1dcfb;
+}
+
+/* Selected and hovered/focused time */
+.picker__list-item--selected,
+.picker__list-item--selected:hover,
+.picker--focused .picker__list-item--selected
+{
+    z-index: 10;
+
+    color: #fff;
+    background: #0089ec;
+}
+
+/* Disabled time */
+.picker__list-item--disabled,
+.picker__list-item--disabled:hover,
+.picker--focused .picker__list-item--disabled
+{
+    z-index: auto;
+
+    cursor: default;
+
+    color: #ddd;
+    border-color: #f5f5f5;
+    border-color: #ddd;
+    background: #f5f5f5;
+}
+
+/**
+ * The clear button
+ */
+.picker--time .picker__button--clear
+{
+    font-size: .67em;
+    font-weight: 500;
+
+    display: block;
+
+    width: 80%;
+    margin: 1em auto 0;
+    padding: 1em 1.25em;
+
+    text-align: center;
+    text-transform: uppercase;
+
+    color: #666;
+    border: 0;
+    background: none;
+}
+
+.picker--time .picker__button--clear:hover,
+.picker--time .picker__button--clear:focus
+{
+    cursor: pointer;
+
+    color: #000;
+    color: #fff;
+    border-color: #e20;
+    outline: none;
+    background: #b1dcfb;
+    background: #e20;
+}
+
+.picker--time .picker__button--clear:before
+{
+    font-size: 1.25em;
+    font-weight: bold;
+
+    top: -.25em;
+
+    color: #666;
+}
+
+.picker--time .picker__button--clear:hover:before,
+.picker--time .picker__button--clear:focus:before
+{
+    color: #fff;
+    border-color: #fff;
+}
+
+/* ==========================================================================
+   $DEFAULT-TIME-PICKER
+   ========================================================================== */
+/**
+ * The frame the bounds the time picker.
+ */
+.picker--time .picker__frame
+{
+    min-width: 256px;
+    max-width: 320px;
+}
+
+/**
+ * The picker box.
+ */
+.picker--time .picker__box
+{
+    font-size: 1em;
+
+    padding: 0;
+
+    background: #f2f2f2;
+}
+
+@media (min-height: 40.125em)
+{
+    .picker--time .picker__box
+    {
+        margin-bottom: 5em;
+    }
+}
+
+.w-container
+{
+    max-width: 940px;
+    margin-right: auto;
+    margin-left: auto;
+}
+
+.w-container:before,
+.w-container:after
+{
+    display: table;
+
+    content: ' ';
+}
+
+.w-container:after
+{
+    clear: both;
+}
+
+.w-container .w-row
+{
+    margin-right: -10px;
+    margin-left: -10px;
+}
+
+.w-row:before,
+.w-row:after
+{
+    display: table;
+
+    content: ' ';
+}
+
+.w-row:after
+{
+    clear: both;
+}
+
+.w-row .w-row
+{
+    margin-right: 0;
+    margin-left: 0;
+}
+
+.w-col
+{
+    position: relative;
+
+    float: left;
+
+    width: 100%;
+    min-height: 1px;
+    padding-right: 10px;
+    padding-left: 10px;
+}
+
+.w-col .w-col
+{
+    padding-right: 0;
+    padding-left: 0;
+}
+
+.w-col-1
+{
+    width: 8.33333333%;
+}
+
+.w-col-2
+{
+    width: 16.66666667%;
+}
+
+.w-col-3
+{
+    width: 25%;
+}
+
+.w-col-4
+{
+    width: 33.33333333%;
+}
+
+.w-col-5
+{
+    width: 41.66666667%;
+}
+
+.w-col-6
+{
+    width: 50%;
+}
+
+.w-col-7
+{
+    width: 58.33333333%;
+}
+
+.w-col-8
+{
+    width: 66.66666667%;
+}
+
+.w-col-9
+{
+    width: 75%;
+}
+
+.w-col-10
+{
+    width: 83.33333333%;
+}
+
+.w-col-11
+{
+    width: 91.66666667%;
+}
+
+.w-col-12
+{
+    width: 100%;
+}
+
+.w-col-push-1
+{
+    left: 8.33333333%;
+}
+
+.w-col-push-2
+{
+    left: 16.66666667%;
+}
+
+.w-col-push-3
+{
+    left: 25%;
+}
+
+.w-col-push-4
+{
+    left: 33.33333333%;
+}
+
+.w-col-push-5
+{
+    left: 41.66666667%;
+}
+
+.w-col-push-6
+{
+    left: 50%;
+}
+
+.w-col-push-7
+{
+    left: 58.33333333%;
+}
+
+.w-col-push-8
+{
+    left: 66.66666667%;
+}
+
+.w-col-push-9
+{
+    left: 75%;
+}
+
+.w-col-push-10
+{
+    left: 83.33333333%;
+}
+
+.w-col-push-11
+{
+    left: 91.66666667%;
+}
+
+.w-col-pull-1
+{
+    right: 8.33333333%;
+}
+
+.w-col-pull-2
+{
+    right: 16.66666667%;
+}
+
+.w-col-pull-3
+{
+    right: 25%;
+}
+
+.w-col-pull-4
+{
+    right: 33.33333333%;
+}
+
+.w-col-pull-5
+{
+    right: 41.66666667%;
+}
+
+.w-col-pull-6
+{
+    right: 50%;
+}
+
+.w-col-pull-7
+{
+    right: 58.33333333%;
+}
+
+.w-col-pull-8
+{
+    right: 66.66666667%;
+}
+
+.w-col-pull-9
+{
+    right: 75%;
+}
+
+.w-col-pull-10
+{
+    right: 83.33333333%;
+}
+
+.w-col-pull-11
+{
+    right: 91.66666667%;
+}
+
+.w-col-offset-1
+{
+    margin-left: 8.33333333%;
+}
+
+.w-col-offset-2
+{
+    margin-left: 16.66666667%;
+}
+
+.w-col-offset-3
+{
+    margin-left: 25%;
+}
+
+.w-col-offset-4
+{
+    margin-left: 33.33333333%;
+}
+
+.w-col-offset-5
+{
+    margin-left: 41.66666667%;
+}
+
+.w-col-offset-6
+{
+    margin-left: 50%;
+}
+
+.w-col-offset-7
+{
+    margin-left: 58.33333333%;
+}
+
+.w-col-offset-8
+{
+    margin-left: 66.66666667%;
+}
+
+.w-col-offset-9
+{
+    margin-left: 75%;
+}
+
+.w-col-offset-10
+{
+    margin-left: 83.33333333%;
+}
+
+.w-col-offset-11
+{
+    margin-left: 91.66666667%;
+}
+
+.w-hidden-main
+{
+    display: none !important;
+}
+
+@media screen and (max-width: 991px)
+{
+    .w-container
+    {
+        max-width: 728px;
+    }
+    .w-hidden-main
+    {
+        display: inherit !important;
+    }
+    .w-hidden-medium
+    {
+        display: none !important;
+    }
+    .w-col-medium-1
+    {
+        width: 8.33333333%;
+    }
+    .w-col-medium-2
+    {
+        width: 16.66666667%;
+    }
+    .w-col-medium-3
+    {
+        width: 25%;
+    }
+    .w-col-medium-4
+    {
+        width: 33.33333333%;
+    }
+    .w-col-medium-5
+    {
+        width: 41.66666667%;
+    }
+    .w-col-medium-6
+    {
+        width: 50%;
+    }
+    .w-col-medium-7
+    {
+        width: 58.33333333%;
+    }
+    .w-col-medium-8
+    {
+        width: 66.66666667%;
+    }
+    .w-col-medium-9
+    {
+        width: 75%;
+    }
+    .w-col-medium-10
+    {
+        width: 83.33333333%;
+    }
+    .w-col-medium-11
+    {
+        width: 91.66666667%;
+    }
+    .w-col-medium-12
+    {
+        width: 100%;
+    }
+    .w-col-medium-push-1
+    {
+        left: 8.33333333%;
+    }
+    .w-col-medium-push-2
+    {
+        left: 16.66666667%;
+    }
+    .w-col-medium-push-3
+    {
+        left: 25%;
+    }
+    .w-col-medium-push-4
+    {
+        left: 33.33333333%;
+    }
+    .w-col-medium-push-5
+    {
+        left: 41.66666667%;
+    }
+    .w-col-medium-push-6
+    {
+        left: 50%;
+    }
+    .w-col-medium-push-7
+    {
+        left: 58.33333333%;
+    }
+    .w-col-medium-push-8
+    {
+        left: 66.66666667%;
+    }
+    .w-col-medium-push-9
+    {
+        left: 75%;
+    }
+    .w-col-medium-push-10
+    {
+        left: 83.33333333%;
+    }
+    .w-col-medium-push-11
+    {
+        left: 91.66666667%;
+    }
+    .w-col-medium-pull-1
+    {
+        right: 8.33333333%;
+    }
+    .w-col-medium-pull-2
+    {
+        right: 16.66666667%;
+    }
+    .w-col-medium-pull-3
+    {
+        right: 25%;
+    }
+    .w-col-medium-pull-4
+    {
+        right: 33.33333333%;
+    }
+    .w-col-medium-pull-5
+    {
+        right: 41.66666667%;
+    }
+    .w-col-medium-pull-6
+    {
+        right: 50%;
+    }
+    .w-col-medium-pull-7
+    {
+        right: 58.33333333%;
+    }
+    .w-col-medium-pull-8
+    {
+        right: 66.66666667%;
+    }
+    .w-col-medium-pull-9
+    {
+        right: 75%;
+    }
+    .w-col-medium-pull-10
+    {
+        right: 83.33333333%;
+    }
+    .w-col-medium-pull-11
+    {
+        right: 91.66666667%;
+    }
+    .w-col-medium-offset-1
+    {
+        margin-left: 8.33333333%;
+    }
+    .w-col-medium-offset-2
+    {
+        margin-left: 16.66666667%;
+    }
+    .w-col-medium-offset-3
+    {
+        margin-left: 25%;
+    }
+    .w-col-medium-offset-4
+    {
+        margin-left: 33.33333333%;
+    }
+    .w-col-medium-offset-5
+    {
+        margin-left: 41.66666667%;
+    }
+    .w-col-medium-offset-6
+    {
+        margin-left: 50%;
+    }
+    .w-col-medium-offset-7
+    {
+        margin-left: 58.33333333%;
+    }
+    .w-col-medium-offset-8
+    {
+        margin-left: 66.66666667%;
+    }
+    .w-col-medium-offset-9
+    {
+        margin-left: 75%;
+    }
+    .w-col-medium-offset-10
+    {
+        margin-left: 83.33333333%;
+    }
+    .w-col-medium-offset-11
+    {
+        margin-left: 91.66666667%;
+    }
+    .w-col-stack
+    {
+        right: auto;
+        left: auto;
+
+        width: 100%;
+    }
+}
+
+@media screen and (max-width: 767px)
+{
+    .w-hidden-main
+    {
+        display: inherit !important;
+    }
+    .w-hidden-medium
+    {
+        display: inherit !important;
+    }
+    .w-hidden-small
+    {
+        display: none !important;
+    }
+    .w-row,
+    .w-container .w-row
+    {
+        margin-right: 0;
+        margin-left: 0;
+    }
+    .w-col
+    {
+        right: auto;
+        left: auto;
+
+        width: 100%;
+    }
+    .w-col-small-1
+    {
+        width: 8.33333333%;
+    }
+    .w-col-small-2
+    {
+        width: 16.66666667%;
+    }
+    .w-col-small-3
+    {
+        width: 25%;
+    }
+    .w-col-small-4
+    {
+        width: 33.33333333%;
+    }
+    .w-col-small-5
+    {
+        width: 41.66666667%;
+    }
+    .w-col-small-6
+    {
+        width: 50%;
+    }
+    .w-col-small-7
+    {
+        width: 58.33333333%;
+    }
+    .w-col-small-8
+    {
+        width: 66.66666667%;
+    }
+    .w-col-small-9
+    {
+        width: 75%;
+    }
+    .w-col-small-10
+    {
+        width: 83.33333333%;
+    }
+    .w-col-small-11
+    {
+        width: 91.66666667%;
+    }
+    .w-col-small-12
+    {
+        width: 100%;
+    }
+    .w-col-small-push-1
+    {
+        left: 8.33333333%;
+    }
+    .w-col-small-push-2
+    {
+        left: 16.66666667%;
+    }
+    .w-col-small-push-3
+    {
+        left: 25%;
+    }
+    .w-col-small-push-4
+    {
+        left: 33.33333333%;
+    }
+    .w-col-small-push-5
+    {
+        left: 41.66666667%;
+    }
+    .w-col-small-push-6
+    {
+        left: 50%;
+    }
+    .w-col-small-push-7
+    {
+        left: 58.33333333%;
+    }
+    .w-col-small-push-8
+    {
+        left: 66.66666667%;
+    }
+    .w-col-small-push-9
+    {
+        left: 75%;
+    }
+    .w-col-small-push-10
+    {
+        left: 83.33333333%;
+    }
+    .w-col-small-push-11
+    {
+        left: 91.66666667%;
+    }
+    .w-col-small-pull-1
+    {
+        right: 8.33333333%;
+    }
+    .w-col-small-pull-2
+    {
+        right: 16.66666667%;
+    }
+    .w-col-small-pull-3
+    {
+        right: 25%;
+    }
+    .w-col-small-pull-4
+    {
+        right: 33.33333333%;
+    }
+    .w-col-small-pull-5
+    {
+        right: 41.66666667%;
+    }
+    .w-col-small-pull-6
+    {
+        right: 50%;
+    }
+    .w-col-small-pull-7
+    {
+        right: 58.33333333%;
+    }
+    .w-col-small-pull-8
+    {
+        right: 66.66666667%;
+    }
+    .w-col-small-pull-9
+    {
+        right: 75%;
+    }
+    .w-col-small-pull-10
+    {
+        right: 83.33333333%;
+    }
+    .w-col-small-pull-11
+    {
+        right: 91.66666667%;
+    }
+    .w-col-small-offset-1
+    {
+        margin-left: 8.33333333%;
+    }
+    .w-col-small-offset-2
+    {
+        margin-left: 16.66666667%;
+    }
+    .w-col-small-offset-3
+    {
+        margin-left: 25%;
+    }
+    .w-col-small-offset-4
+    {
+        margin-left: 33.33333333%;
+    }
+    .w-col-small-offset-5
+    {
+        margin-left: 41.66666667%;
+    }
+    .w-col-small-offset-6
+    {
+        margin-left: 50%;
+    }
+    .w-col-small-offset-7
+    {
+        margin-left: 58.33333333%;
+    }
+    .w-col-small-offset-8
+    {
+        margin-left: 66.66666667%;
+    }
+    .w-col-small-offset-9
+    {
+        margin-left: 75%;
+    }
+    .w-col-small-offset-10
+    {
+        margin-left: 83.33333333%;
+    }
+    .w-col-small-offset-11
+    {
+        margin-left: 91.66666667%;
+    }
+}
+
+@media screen and (max-width: 479px)
+{
+    .w-container
+    {
+        max-width: none;
+    }
+    .w-hidden-main
+    {
+        display: inherit !important;
+    }
+    .w-hidden-medium
+    {
+        display: inherit !important;
+    }
+    .w-hidden-small
+    {
+        display: inherit !important;
+    }
+    .w-hidden-tiny
+    {
+        display: none !important;
+    }
+    .w-col
+    {
+        width: 100%;
+    }
+    .w-col-tiny-1
+    {
+        width: 8.33333333%;
+    }
+    .w-col-tiny-2
+    {
+        width: 16.66666667%;
+    }
+    .w-col-tiny-3
+    {
+        width: 25%;
+    }
+    .w-col-tiny-4
+    {
+        width: 33.33333333%;
+    }
+    .w-col-tiny-5
+    {
+        width: 41.66666667%;
+    }
+    .w-col-tiny-6
+    {
+        width: 50%;
+    }
+    .w-col-tiny-7
+    {
+        width: 58.33333333%;
+    }
+    .w-col-tiny-8
+    {
+        width: 66.66666667%;
+    }
+    .w-col-tiny-9
+    {
+        width: 75%;
+    }
+    .w-col-tiny-10
+    {
+        width: 83.33333333%;
+    }
+    .w-col-tiny-11
+    {
+        width: 91.66666667%;
+    }
+    .w-col-tiny-12
+    {
+        width: 100%;
+    }
+    .w-col-tiny-push-1
+    {
+        left: 8.33333333%;
+    }
+    .w-col-tiny-push-2
+    {
+        left: 16.66666667%;
+    }
+    .w-col-tiny-push-3
+    {
+        left: 25%;
+    }
+    .w-col-tiny-push-4
+    {
+        left: 33.33333333%;
+    }
+    .w-col-tiny-push-5
+    {
+        left: 41.66666667%;
+    }
+    .w-col-tiny-push-6
+    {
+        left: 50%;
+    }
+    .w-col-tiny-push-7
+    {
+        left: 58.33333333%;
+    }
+    .w-col-tiny-push-8
+    {
+        left: 66.66666667%;
+    }
+    .w-col-tiny-push-9
+    {
+        left: 75%;
+    }
+    .w-col-tiny-push-10
+    {
+        left: 83.33333333%;
+    }
+    .w-col-tiny-push-11
+    {
+        left: 91.66666667%;
+    }
+    .w-col-tiny-pull-1
+    {
+        right: 8.33333333%;
+    }
+    .w-col-tiny-pull-2
+    {
+        right: 16.66666667%;
+    }
+    .w-col-tiny-pull-3
+    {
+        right: 25%;
+    }
+    .w-col-tiny-pull-4
+    {
+        right: 33.33333333%;
+    }
+    .w-col-tiny-pull-5
+    {
+        right: 41.66666667%;
+    }
+    .w-col-tiny-pull-6
+    {
+        right: 50%;
+    }
+    .w-col-tiny-pull-7
+    {
+        right: 58.33333333%;
+    }
+    .w-col-tiny-pull-8
+    {
+        right: 66.66666667%;
+    }
+    .w-col-tiny-pull-9
+    {
+        right: 75%;
+    }
+    .w-col-tiny-pull-10
+    {
+        right: 83.33333333%;
+    }
+    .w-col-tiny-pull-11
+    {
+        right: 91.66666667%;
+    }
+    .w-col-tiny-offset-1
+    {
+        margin-left: 8.33333333%;
+    }
+    .w-col-tiny-offset-2
+    {
+        margin-left: 16.66666667%;
+    }
+    .w-col-tiny-offset-3
+    {
+        margin-left: 25%;
+    }
+    .w-col-tiny-offset-4
+    {
+        margin-left: 33.33333333%;
+    }
+    .w-col-tiny-offset-5
+    {
+        margin-left: 41.66666667%;
+    }
+    .w-col-tiny-offset-6
+    {
+        margin-left: 50%;
+    }
+    .w-col-tiny-offset-7
+    {
+        margin-left: 58.33333333%;
+    }
+    .w-col-tiny-offset-8
+    {
+        margin-left: 66.66666667%;
+    }
+    .w-col-tiny-offset-9
+    {
+        margin-left: 75%;
+    }
+    .w-col-tiny-offset-10
+    {
+        margin-left: 83.33333333%;
+    }
+    .w-col-tiny-offset-11
+    {
+        margin-left: 91.66666667%;
+    }
+}
+
+body
+{
+    font-family: 'Source Sans Pro', sans-serif;
+}
+
+.main-header
+{
+    padding-top: .5rem;
+    font-weight: bold;
+    text-align: center;
+
+    color: #62a70f;
+}
+@media (max-width: 767px)
+{
+    .main-header
+    {
+        font-size: 1.8rem;
+
+        width: 90%;
+        margin-right: auto;
+        margin-left: auto;
+    }
+}
+
+.fa
+{
+    color: #54575a;
+}
+
+.placeholder-hide
+{
+    display: none;
+}
+
+.sudoPicker
+{
+    font-size: 1rem;
+    font-weight: 300;
+
+    position: inherit;
+
+    margin: 0 auto;
+
+    cursor: default;
+    text-align: center;
+
+    color: #54575a;
+}
+
+.scheduleTime
+{
+    height: auto;
+    margin: 0 auto;
+    padding-bottom: 2rem;
+    padding-top: 2rem;
+    background: white;
+}
+
+.form-scheduler {
+   border-radius: 25px;
+    background: #62a70f;
+  border: 2px solid #62a70f;
+  padding: 1rem;
+}
+
+#first_name {
+  margin-top: 1.5rem;
+}
+
+.form-template {
+    width: 50%;
+    margin: 0 auto;
+
+    text-align: center;
+
+
+ /*   -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;*/
+}
+@media (max-width: 767px)
+{
+    .form-template
+    {
+        width: 90%;
+    }
+}
+.form-template input
+{
+    font-size: 1.3rem;
+
+    width: 90%;
+    margin: 0 0 10px;
+    padding: .9rem;
+
+    text-align: left;
+
+    border-radius: 10px;
+}
+
+#clock::-webkit-input-placeholder::after
+{
+    font-family: 'fontAwesome';
+    font-size: 1.3rem;
+
+    padding-left: 69%;
+
+    content: '\f017';
+    text-align: right;
+}
+@media (max-width: 767px)
+{
+    #clock::-webkit-input-placeholder::after
+    {
+        padding-left: 35%;
+    }
+}
+@media (min-width: 768px) and (max-width: 979px)
+{
+    #clock::-webkit-input-placeholder::after
+    {
+        padding-left: 51%;
+    }
+}
+@media (max-width: 320px)
+{
+    #clock::-webkit-input-placeholder::after
+    {
+        padding-left: 25%;
+    }
+}
+@media (min-width: 980px) and (max-width: 1199px)
+{
+    #clock::-webkit-input-placeholder::after
+    {
+        padding-left: 60%;
+    }
+}
+
+#calendar::-webkit-input-placeholder::after
+{
+    font-family: fontAwesome;
+    font-size: 1.3rem;
+
+    padding-left: 70%;
+
+    content: '\f073';
+    text-align: right;
+}
+@media (max-width: 468px)
+{
+    #calendar::-webkit-input-placeholder::after
+    {
+        padding-left: 38%;
+    }
+}
+
+@media (max-width: 320px)
+{
+    #calendar::-webkit-input-placeholder::after
+    {
+        padding-left: 30%;
+    }
+}
+@media (min-width: 980px) and (max-width: 1199px)
+{
+    #calendar::-webkit-input-placeholder::after
+    {
+        padding-left: 62%;
+    }
+}
+
+#salesSubmit
+{
+    margin-top: 1rem;
+}
+@media (max-width: 767px)
+{
+    #salesSubmit
+    {
+        display:         flex;
+        display: -webkit-flex;
+        display:    -moz-flex;
+        display:      -o-flex;
+    }
+}
+
+#submitTime
+{
+    font-size: 1.4rem;
+    font-weight: bold;
+
+    width: 60%;
+    margin: 0 auto;
+    margin-bottom: 2rem;
+    padding: 2%;
+
+    cursor: pointer;
+    text-align: center;
+
+    color: white;
+    border: #54575a;
+    background: #54575a;
+}
+
+@media (min-width: 768px) and (max-width: 979px)
+{
+    #calendar::-webkit-input-placeholder::after
+    {
+        padding-left: 53%;
+    }
+    .g-recaptcha {
+  margin-left: 17%;
+}
+#submitTime {
+    font-size: 1.2rem;
+}
+}
+#submitTime:hover
+{
+    background: #3b3e40;
+}
+@media (max-width: 767px)
+{
+    #submitTime
+    {
+        width: 85%;
+        padding: .8rem;
+
+    }
+}
+
+.preferred_day,
+.preferred_time {
+  cursor: pointer;
+}
