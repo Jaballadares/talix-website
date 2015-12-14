@@ -45,7 +45,28 @@ Template Name: Platform Template
         <div class="w-col w-col-3 side-column">
           <h3 class="h3-green-header">Learn More about HealthData Engine</h3>
           <div class="divider sidebar-divider"></div>
-          <h3 class="post-title"><a href="<?php bloginfo('template_directory'); ?>/library/images/Company_Overview_Brochure_2015TX_v5.pdf">Download our product overview sheet</a></h3>
+          <h3 class="post-title"><a href="" class="lead-popup-trigger">Download our product overview sheet</a></h3>
+          <div class="lead-popup" role="alert">
+    <div class="lead-popup-container">
+      <form class="lead-form" action="https://www.salesforce.com/servlet/servlet.WebToLead?encoding=UTF-8" id="download-brochure">
+            <input type="hidden" name="oid" value="00DG0000000i5W2">
+            <input type="hidden" name="retURL" value="http://www.talix.com/wp-content/uploads/2015/11/Company_Overview_Brochure_2015TX_v5.pdf">
+            <input type="hidden" select="" id="lead_source" name="lead_source" value="Downloading_Company_Overview" class="special">
+      <div class="lead-popup-close">X</div>
+      <!-- <span>Thank you for your interest, can you tell us a little about yourself before downloading?</span> -->
+      <label for="first_name" class="placeholder-hide"></label>
+      <input type="text" placeholder="First Name" class="block-input" name="first_name" id="first_name" required/>
+
+      <label for="last_name" class="placeholder-hide"></label>
+      <input type="text" name="last_name" id="last_name" placeholder="Last Name" class="block-input" required/>
+      <label for="company" class="placeholder-hide"></label>
+      <input type="text" placeholder="Company" id="company" name="company" class="block-input" required/>
+      <label for"email" class="placeholder-hide"></label>
+      <input type="text" placeholder="Email" id="email" name="email" class="block-input" required/>
+      <input type="submit" value="Download!" class="lead-submit">
+      </form>
+    </div>
+</div>
           <h3 class="h3-green-header">Read Related Blog Posts</h3>
           <?php query_posts(array(
               'post_type' => 'any',
@@ -56,13 +77,10 @@ Template Name: Platform Template
           <div class="divider sidebar-divider"></div>
           <?php while(have_posts()): the_post(); ?>
           <div class="post-title"><a href="<?php the_permalink(); ?>"><?php the_title(); ?></a></div>
-          <div class="divider sidebar-divider"></div>
         <?php endwhile; ?>
 
          <!--  <div class="divider sidebar-divider"></div> -->
-          <h3 class="h3-green-header">What’s Your Health IQ?</h3>
-          <div class="post-text">Test your knowledge with our HealthTaxonomy game</div><a class="w-button button sidebar-button" href="http://talixtaxonomygame.herokuapp.com/">Taxonomy Game</a>
-        </div>
+
       </div>
     </div>
   </div>

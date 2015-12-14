@@ -100,6 +100,30 @@ $(document).ready(function(){
 </script>
 
 
+<script>
+jQuery(document).ready(function($){
+  //open popup
+  $('.lead-popup-trigger').on('click', function(event){
+    event.preventDefault();
+    $('.lead-popup').addClass('is-visible');
+  });
+
+  //close popup
+  $('.lead-popup').on('click', function(event){
+    if( $(event.target).is('.lead-popup-close') || $(event.target).is('.lead-popup') ) {
+      event.preventDefault();
+      $(this).removeClass('is-visible');
+    }
+  });
+  //close popup when clicking the esc keyboard button
+  $(document).keyup(function(event){
+      if(event.which=='27'){
+        $('.lead-popup').removeClass('is-visible');
+      }
+    });
+});
+</script>
+
 	</body>
 
 </html>

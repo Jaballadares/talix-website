@@ -80,7 +80,28 @@ Template Name: Page Products Payers
           <a class="button learn-more-white">Risk Calculator</a>
           </a> -->
           <h3 class="h3-green-header">Learn More about Coding InSight</h3>
-          <div class="post-title"><a href="http://www.talix.com/wp-content/uploads/2015/11/Company_Overview_Brochure_2015TX_v5.pdf">Download our Product Overview Sheet</a></div>
+          <div class="post-title"><a href="" class="lead-popup-trigger">Download our Product Overview Sheet</a></div>
+          <div class="lead-popup" role="alert">
+    <div class="lead-popup-container">
+      <form class="lead-form" action="https://www.salesforce.com/servlet/servlet.WebToLead?encoding=UTF-8" id="download-brochure">
+            <input type="hidden" name="oid" value="00DG0000000i5W2">
+            <input type="hidden" name="retURL" value="http://www.talix.com/wp-content/uploads/2015/11/Company_Overview_Brochure_2015TX_v5.pdf">
+            <input type="hidden" select="" id="lead_source" name="lead_source" value="Downloading_Company_Overview" class="special">
+      <div class="lead-popup-close">X</div>
+      <!-- <span>Thank you for your interest, can you tell us a little about yourself before downloading?</span> -->
+      <label for="first_name" class="placeholder-hide"></label>
+      <input type="text" placeholder="First Name" class="block-input" name="first_name" id="first_name" required/>
+
+      <label for="last_name" class="placeholder-hide"></label>
+      <input type="text" name="last_name" id="last_name" placeholder="Last Name" class="block-input" required/>
+      <label for="company" class="placeholder-hide"></label>
+      <input type="text" placeholder="Company" id="company" name="company" class="block-input" required/>
+      <label for"email" class="placeholder-hide"></label>
+      <input type="text" placeholder="Email" id="email" name="email" class="block-input" required/>
+      <input type="submit" value="Download!" class="lead-submit">
+      </form>
+    </div>
+</div>
           <div class="post-title"><a href="/products/coding-insight-for-providers">Read about Coding InSight for Providers</a></div>
           <div class="divider sidebar-divider"></div>
 

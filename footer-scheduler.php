@@ -12,14 +12,7 @@
       </div>
       <div>
         <div class="w-row">
-          <div class="w-col w-col-4">
-            <a class="w-clearfix w-inline-block" href="#"><img height="20" src="<?php bloginfo('template_directory'); ?>/library/images/twitterwhite.svg">
-            </a>
-            <a class="w-clearfix w-inline-block" href="#"><img class="footer-icon" height="20" src="<?php bloginfo('template_directory'); ?>/library/images/linkedin.svg">
-            </a>
-            <a class="w-inline-block" href="#"><img class="social-icon" width="20" height="20" src="<?php bloginfo('template_directory'); ?>/library/images/youtubewhite.svg"></a>
-            <a class="w-inline-block" href="#"><img class="footer-icon" width="20" height="20" src="<?php bloginfo('template_directory'); ?>/library/images/facebookwhite.svg"></a>
-          </div>
+
           <div class="w-col w-col-4"></div>
           <div class="w-col w-col-4">
             <div class="footer-copyright">Copyright 2015 Talix. All Rights Reserved.</div>
