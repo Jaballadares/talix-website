@@ -42,7 +42,7 @@ Template Name: Single News Template
 ?>
         </div>
         <div class="w-col w-col-10">
-          <div data-ix="fade-in-on-scroll">
+          <div id="fader">
             <h1 class="blog-post-heading-2"><?php the_title(); ?><?php single_cat_title(); ?></h1>
             <div>
               <div class="divider"></div>

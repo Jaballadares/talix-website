@@ -22,7 +22,7 @@ setTimeout(ldinsp, 500); document.readyState != "complete" ? (window.attachEvent
 		<?php // force Internet Explorer to use the latest rendering engine available ?>
 		<meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="google-site-verification" content="qDktNv3-_jrQXnijOTPfRLVNrSDuOkcHC1zuzXwOvto" />
-    <meta name="msvalidate.01" content="B0117AB24A867480160BC788AA8AB7E7" />
+    <meta name="msvalidate.01" content="4700FA4A29C45E536F3341FCCEE383D0" />
 
 		<title><?php wp_title('', TRUE, 'right'); ?> <?php bloginfo('description');?></title>
 
@@ -58,7 +58,7 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
           <div class="w-dropdown-toggle nav-link dropdown-nav-link">
             <div>Products</div>
           </div>
-          <nav class="w-dropdown-list dropdown-list-wrapper"><a class="w-dropdown-link dropdown" href="/products/coding-insight-for-providers">Providers</a><a class="w-dropdown-link dropdown" href="/products/coding-insight-for-payers">Payers</a>
+          <nav class="w-dropdown-list dropdown-list-wrapper"><a class="w-dropdown-link dropdown" href="/products/risk-adjustment-for-providers">Providers</a><a class="w-dropdown-link dropdown" href="/products/risk-adjustment-for-payers">Payers</a>
           </nav>
         </div>
         <div class="w-dropdown" data-delay="0" data-ix="open-dropdown-on-hover">

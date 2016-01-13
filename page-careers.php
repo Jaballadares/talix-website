@@ -30,6 +30,10 @@ Template Name: Page Careers Template
           <div class="paragraph-3">We like to give back to the community and support important causes. Every year, we participate as a team in Walk MS, AIDS Walk and other events.</div>
         </li>
       </ul>
+
+      <div style="text-align:center;">
+        <h3 class="jobOpenings">JOB OPENINGS</h3>
+      </div>
       <script type="text/javascript" src="http://healthline.mycompas.com/corp/consol_careers/dyniframe2.js">
     </script>
     <script>

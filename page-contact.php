@@ -23,7 +23,7 @@ Template Name: Contact Page Template
       <div class="divider"></div>
       <div class="w-row contact-row-1">
         <div class="w-col w-col-6 contact-info-div">
-          <h3 class="contact-heading-3">Sales: Sales</h3>
+          <h3 class="contact-heading-3">Sales:</h3>
           <h3 class="contact-heading-3">Media/Press:</h3>
           <h3 class="contact-heading-3">Careers:</h3>
         </div>

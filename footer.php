@@ -15,7 +15,7 @@
 
           <div class="w-col w-col-4"></div>
           <div class="w-col w-col-12">
-            <div class="footer-copyright">Copyright 2015 Talix. All Rights Reserved.</div>
+            <div class="footer-copyright">Copyright 2016 Talix. All Rights Reserved.</div>
           </div>
         </div>
       </div>

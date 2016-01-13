@@ -39,7 +39,7 @@ Template Name: Home Page Template
         </div>
         <div class="w-col w-col-6"><img class="coding-insight-image-1" src="<?php bloginfo('template_directory'); ?>/library/images/TalixComputer.gif" data-ix="fade-in-on-scroll" alt="Coding Optimization Providers Icon">
           <h4>Coding InSight for Payers</h4>
-          <div class="paragraph-2"><?php the_sub_field('payers_snippet') ?></div><a class="button learn-more-green" href="/products/coding-insight-for-payers
+          <div class="paragraph-2 alignButton"><?php the_sub_field('payers_snippet') ?></div><a class="button learn-more-green" href="/products/coding-insight-for-payers
           ">Learn More</a>
         </div>
       </div>
@@ -88,7 +88,7 @@ Template Name: Home Page Template
             <div class="publication"><?php the_field('publication'); ?></div>
 
 
-            <div class="date"><?php the_time("F j, Y"); ?></div>
+            <div class="date"><?php the_field('date_news'); ?></div>
 
             <div class="section-divider"></div>
             <?php endwhile; ?>
